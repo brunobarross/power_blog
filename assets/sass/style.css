@@ -80,6 +80,7 @@ body {
   outline: 0;
   background: none;
   cursor: pointer;
+  padding: 0 8px;
 }
 .blog__header-busca .input__box button ion-icon {
   font-size: 24px;
