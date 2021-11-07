@@ -1,10 +1,13 @@
 const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
-const url = `https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b`
+// const url = `https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b`
 
 
+var url = 'https://api.currentsapi.services/v1/latest-news?' +
+'language=pt&' +
+'apiKey=REM4gJuyFwfGNm9CtbtVbi3vhF-DI20JecYd6RoVHuHbMYN1';
 
-
+var req = new Request(url);
 
 
 const wrapper = document.querySelector('[data-js="noticias"]')
@@ -12,18 +15,20 @@ const wrapper = document.querySelector('[data-js="noticias"]')
 function mostrarNoticias() {
   let saida = "";
   let ultimasNoticias;
-  const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
-  fetch(url).then((response) => {
+
+  fetch(req).then((response) => {
+    console.log(req)
     return response.json();
   }).then((noticias) => {
 
+
     saida = saida = "";
-    ultimasNoticias = noticias.articles;
+    ultimasNoticias = noticias.news;
     console.log(ultimasNoticias)
 
 
     for (var i in ultimasNoticias) {
-      let data = ultimasNoticias[i].publishedAt.substr(0, 10).replace('-', '/').replace('-', '/');
+      let data = ultimasNoticias[i].published.substr(0, 10).replace('-', '/').replace('-', '/');
 
       saida += `
     <div class="blog__conteudo-wrapper-item">
@@ -42,7 +47,7 @@ function mostrarNoticias() {
     }
     filtrarNoticias()
 
-    
+
   })
 
 
@@ -67,8 +72,8 @@ function filtrarNoticias() {
 
 
   function limpar(index) {
-    noticiasItem.forEach((div)=>{
-      div.style.display="block";
+    noticiasItem.forEach((div) => {
+      div.style.display = "block";
     })
   }
 
@@ -78,7 +83,7 @@ function filtrarNoticias() {
       const valorInput = inptBusca.value.toUpperCase();
       if ((div).innerHTML.toUpperCase().indexOf(valorInput) == -1) {
         div.style.display = "none";
-        inptBusca.addEventListener("input", function(){
+        inptBusca.addEventListener("input", function () {
           limpar(index)
         })
       }
