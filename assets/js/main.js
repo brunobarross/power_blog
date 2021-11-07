@@ -1,22 +1,22 @@
-const url = 'https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b'
+const proxyUrl = "https://cors-anywhere.herokuapp.com/"
+
+const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b`
+
+
 
 
 const wrapper = document.querySelector('[data-js="noticias"]')
 
-
-
-
-
-function mostrarNoticias(ultimasNoticias) {
-
-
+function mostrarNoticias() {
+  let saida = "";
+  let ultimasNoticias;
 
   fetch(url).then((response) => {
     return response.json();
   }).then((noticias) => {
 
-    let saida = "";
-    let ultimasNoticias = noticias.articles;
+    saida = saida = "";
+    ultimasNoticias = noticias.articles;
     console.log(ultimasNoticias)
 
 
@@ -32,19 +32,24 @@ function mostrarNoticias(ultimasNoticias) {
         <div class="blog__conteudo-wrapper-item-texto">
             <h2 class="titulo__materia" data-titulo="${ultimasNoticias[i].title}">${ultimasNoticias[i].title}</h2>
             <p class="texto__materia" data-texto="${ultimasNoticias[i].description}">${ultimasNoticias[i].description}</p>
+            <a href="${ultimasNoticias[i].url}" target="_blank" class="ver_mais">Ler mais</a>
         </div>
     </div>
     `
       wrapper.innerHTML = saida;
     }
     filtrarNoticias()
-  })
 
+    
+  })
 
 
 }
 
-setInterval(mostrarNoticias, 1000 * 100)
+
+
+
+setInterval(mostrarNoticias, 1000 * 60 * 60)
 
 mostrarNoticias()
 

@@ -72,6 +72,9 @@ body {
 .blog__header {
     background: linear-gradient(90deg, #574AE8 0%, #3EA1DB 100%);
     padding: 32px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
 
     .menu {
         display: flex;
@@ -133,7 +136,7 @@ body {
 
 
 .blog__conteudo {
-    padding: 90px 0;
+    margin: 290px 0 90px 0;
 
     &-wrapper {
         display: flex;
@@ -186,6 +189,12 @@ body {
                     font-size: 1.125rem;
                     font-weight: 400;
                     line-height: 160%;
+                }
+                .ver_mais{
+                    display: inline-flex;
+                    margin-top: 16px;
+                    color: $cor-roxo;
+                    font-weight: 500;
                 }
             }
         }
