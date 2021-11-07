@@ -1,6 +1,8 @@
 const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
-const url = `${proxyUrl}https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b`
+const url = `https://newsapi.org/v2/top-headlines?sources=google-news-br&apiKey=1e2560598184480183fc18b9161c6d0b`
+
+
 
 
 
@@ -10,7 +12,7 @@ const wrapper = document.querySelector('[data-js="noticias"]')
 function mostrarNoticias() {
   let saida = "";
   let ultimasNoticias;
-
+  const reqOptions = { 'mode': 'cors', headers: { 'Access-Control-Allow-Origin': '*' } };
   fetch(url).then((response) => {
     return response.json();
   }).then((noticias) => {
