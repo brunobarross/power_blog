@@ -73,7 +73,8 @@ export default function getNoticias() {
         }
 
         /* filtro da busca */
-        function filtro() {
+        function filtro(e) {
+            console.log(e)
             noticiasItem.forEach((div, index) => {
                 const valorInput = inptBusca.value.toUpperCase().replace(/[ÀÁÂÃÄÅ]/g, "A");
                 if (removeEspeciais(div).indexOf(valorInput) == -1) {

@@ -1,4 +1,3 @@
+import getNoticias from '../js/modules/fetchNoticias.js'
 
-
-
-import getNoticias from './modules/noticias.js';
+getNoticias();
