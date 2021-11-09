@@ -55,6 +55,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  transition: padding 0.3s ease-in;
 }
 .blog__header .menu {
   display: flex;
@@ -71,6 +72,7 @@ body {
 }
 .blog__header-busca {
   padding-top: 64px;
+  transition: padding 0.3s ease-in;
 }
 .blog__header-busca .input__box {
   position: relative;
@@ -167,4 +169,12 @@ body {
   margin-top: 16px;
   color: var(--cor-roxa);
   font-weight: 500;
+}
+
+.blog__header.scroll {
+  padding: 16px 0;
+}
+
+.blog__header.scroll .blog__header-busca {
+  padding-top: 16px;
 }/*# sourceMappingURL=style.css.map */

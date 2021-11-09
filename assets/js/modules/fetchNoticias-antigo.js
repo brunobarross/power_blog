@@ -1,4 +1,3 @@
-
 export default function getNoticias() {
 
 
@@ -15,42 +14,36 @@ export default function getNoticias() {
     const wrapper = document.querySelector('[data-js="noticias"]')
 
 
-    function getNews({ title, description, url, category, published }) {
-
-        let data = published.substr(0, 10).replace('-', '/').replace('-', '/');
-
-        return ` <div class="blog__conteudo-wrapper-item">
-            <div class="blog__conteudo-wrapper-item-nav">
-                <span class="data__publicacao" data-dia="${data}">${data}</span>
-                <span>${category}</span>
-                <a href="#" class="btn__favorite"></a>
-            </div>
-            <div class="blog__conteudo-wrapper-item-texto">
-                <h2 class="titulo__materia" data-titulo="${title}">${title}</h2>
-                <p class="texto__materia" data-texto="${description}">${description}</p>
-                <a href="${url}" target="_blank" class="ver_mais">Ler mais</a>
-                <p>${category.join(",")} </p>
-            </div>
-        </div>
-        `
-    }
-    const mostraApenas15 = (i, index) => index < 155
-
     function mostrarNoticias() {
-        fetch(req)
-            .then((response) => {
-                return response.json();
-            })
-            .then((noticias) => {
-                const ultimasNoticias = noticias.news;
-                console.log(ultimasNoticias)
-                const saida = ultimasNoticias
-                    .map(getNews)
-                    .filter(mostraApenas15)
+        let saida = "";
+        let ultimasNoticias;
+        fetch(req).then((response) => {
+            return response.json();
+        }).then((noticias) => {
+            saida = saida = "";
+            ultimasNoticias = noticias.news;
+            console.log(ultimasNoticias)
+            for (let i = 1; i <= 15; i++) {
+                let data = ultimasNoticias[i].published.substr(0, 10).replace('-', '/').replace('-', '/');
 
-                wrapper.innerHTML = saida.join("");
-                filtrarNoticias()
-            })
+                saida += `
+    <div class="blog__conteudo-wrapper-item">
+        <div class="blog__conteudo-wrapper-item-nav">
+            <span class="data__publicacao" data-dia="${data}">${data}</span>
+            <a href="#" class="btn__favorite"></a>
+        </div>
+        <div class="blog__conteudo-wrapper-item-texto">
+            <h2 class="titulo__materia" data-titulo="${ultimasNoticias[i].title}">${ultimasNoticias[i].title}</h2>
+            <p class="texto__materia" data-texto="${ultimasNoticias[i].description}">${ultimasNoticias[i].description}</p>
+            <a href="${ultimasNoticias[i].url}" target="_blank" class="ver_mais">Ler mais</a>
+        </div>
+    </div>
+    `
+                wrapper.innerHTML = saida;
+            }
+            /* executa função de filtrar a busca*/
+            filtrarNoticias()
+        })
 
 
     }
